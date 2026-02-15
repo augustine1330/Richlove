@@ -211,46 +211,65 @@
         let currentSpin = 0;
         let isSpinning = false;
         const totalSpins = 2;
-        
-        // Predetermined results
-        const predeterminedResults = [
-            { section: 4, text: " 🍭You Got Lollipop", angle: 100 },
-            { section: 6, text: "💋You got the Chance To Kiss Me!", angle: 260}
+        let totalRotation = 0; // Track cumulative rotation
+
+        // All possible sections with their display text
+        // Each section spans 60 degrees (360 / 6 sections)
+        // The angle here is the offset needed to center the pointer on each section
+        const sections = [
+            { text: "💰 You got $100!" },
+            { text: "💵 You got $2000!" },
+            { text: "🍦 You got Ice Cream!" },
+            { text: "💋 You got the Chance To Kiss Me!" },
+            { text: "📱 You got an iPhone!" },
+            { text: "🍭 You got a Lollipop!" }
         ];
 
         function spin() {
             if (isSpinning || currentSpin >= totalSpins) return;
-            
+
             isSpinning = true;
             const wheel = document.getElementById('wheel');
             const spinBtn = document.getElementById('spinBtn');
             const result = document.getElementById('result');
             const spinsCount = document.getElementById('spinsCount');
-            
+
             spinBtn.disabled = true;
             result.style.display = 'none';
-            
-            // Get predetermined result for current spin
-            const targetResult = predeterminedResults[currentSpin];
-            
-            // Calculate rotation to land on target section
-            // Add multiple full rotations for effect (720-1440 degrees)
-            const baseRotation = Math.floor(Math.random() * 3 + 2) * 360; // 2-4 full rotations
-            const targetRotation = baseRotation + targetResult.angle;
-            
-            wheel.style.transform = `rotate(${targetRotation}deg)`;
-            
-            // Show result after animation
+
+            // Pick a random section (0–5)
+            const randomSection = Math.floor(Math.random() * sections.length);
+
+            // Each section is 60° wide; center of section i is at i * 60 + 30
+            // The pointer sits at the top (0°). To land section i under the pointer,
+            // we rotate so that the section's center aligns with 0° (top).
+            const sectionCenter = randomSection * 60 + 30;
+
+            // Add several full rotations (5–8) for a satisfying spin effect
+            const fullRotations = (Math.floor(Math.random() * 4) + 5) * 360;
+
+            // Calculate the new total rotation
+            // We want the final angle (mod 360) to equal (360 - sectionCenter) so
+            // the chosen section faces up (pointer at top).
+            const targetAngle = (360 - sectionCenter + 360) % 360;
+            const currentAngle = totalRotation % 360;
+            let delta = targetAngle - currentAngle;
+            if (delta <= 0) delta += 360; // always spin forward
+
+            totalRotation += fullRotations + delta;
+
+            wheel.style.transform = `rotate(${totalRotation}deg)`;
+
+            // Show result after animation completes (3s transition)
             setTimeout(() => {
-                result.textContent = targetResult.text;
+                result.textContent = sections[randomSection].text;
                 result.style.display = 'block';
-                
-                // Celebration effect
+
                 createCelebration();
-                
+
                 currentSpin++;
                 spinsCount.textContent = totalSpins - currentSpin;
-                
+
                 if (currentSpin < totalSpins) {
                     spinBtn.disabled = false;
                     spinBtn.textContent = currentSpin === 1 ? '🎯 FINAL SPIN 🎯' : '🎯 SPIN THE WHEEL 🎯';
@@ -260,7 +279,7 @@
                         alert('🎊 Congratulations! You\'ve completed both spins! 🎊');
                     }, 1000);
                 }
-                
+
                 isSpinning = false;
             }, 3000);
         }
@@ -268,7 +287,7 @@
         function createCelebration() {
             const celebration = document.getElementById('celebration');
             const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f093fb', '#fad0c4', '#a8edea'];
-            
+
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.style.position = 'absolute';
@@ -279,9 +298,9 @@
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.borderRadius = '50%';
                 confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
-                
+
                 celebration.appendChild(confetti);
-                
+
                 setTimeout(() => {
                     if (confetti.parentNode) {
                         confetti.parentNode.removeChild(confetti);
@@ -300,7 +319,7 @@
                 }
             }
         `;
-        document.head.appendChild(style)
+        document.head.appendChild(style);
 
         // Initialize
         document.getElementById('spinsCount').textContent = totalSpins;
