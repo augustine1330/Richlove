@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pictures</title>
+</head>
+<style>
+
+body{
+    margin:0;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Container */
+.arr{
+    display: flex;
+    flex-direction: column;   /* One image per row */
+    gap: 30px;
+    padding: 40px 8%;
+}
+
+/* Image Styling */
+.image{
+    width: 100%;              /* Full width */
+    height:700px;
+    object-fit: cover;        /* Prevent stretching */
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+/* Hover Animation */
+.image:hover{
+    transform: scale(1.05);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* Smooth fade-in animation */
+.image{
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.image:nth-child(1){ animation-delay: 0.1s; }
+.image:nth-child(2){ animation-delay: 0.2s; }
+.image:nth-child(3){ animation-delay: 0.3s; }
+.image:nth-child(4){ animation-delay: 0.4s; }
+.image:nth-child(5){ animation-delay: 0.5s; }
+.image:nth-child(6){ animation-delay: 0.6s; }
+.image:nth-child(7){ animation-delay: 0.7s; }
+.image:nth-child(8){ animation-delay: 0.8s; }
+.image:nth-child(9){ animation-delay: 0.9s; }
+
+@keyframes fadeUp{
+    to{
+        opacity:1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="arr">
+    <img class="image" src="pictures/photo_10_2026-02-14_09-36-07.jpg">
+    <img class="image" src="pictures/photo_1_2026-02-14_09-36-07.jpg">
+    <img class="image" src="pictures/photo_2_2026-02-14_09-36-07.jpg">
+    <img class="image" src="pictures/photo_4_2026-02-14_09-36-07.jpg">
+    <img class="image" src="pictures/photo_5_2026-02-14_09-36-07.jpg">
+    <img class="image" src="pictures/photo_6_2026-02-14_09-36-07.jpg">
+    <img class="image" src="pictures/photo_7_2026-02-14_09-36-07.jpg">
+    <img class="image" src="pictures/photo_8_2026-02-14_09-36-07.jpg">
+    <img class="image" src="pictures/photo_9_2026-02-14_09-36-07.jpg">
+</div>
+
+</body>
+</html>

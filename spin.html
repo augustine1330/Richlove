@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Wheel Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-top: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .wheel-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .wheel {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            position: relative;
+            border: 8px solid #333;
+            overflow: hidden;
+            transition: transform 3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .section {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-align: start;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .section:nth-child(1) {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            transform: rotate(0deg) skewY(-30deg);
+        }
+
+        .section:nth-child(2) {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            transform: rotate(60deg) skewY(-30deg);
+        }
+
+        .section:nth-child(3) {
+            background: linear-gradient(45deg, #45b7d1, #96c93d);
+            transform: rotate(120deg) skewY(-30deg);
+        }
+
+        .section:nth-child(4) {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            transform: rotate(180deg) skewY(-30deg);
+        }
+
+        .section:nth-child(5) {
+            background: linear-gradient(45deg, #fad0c4, #ffd1ff);
+            transform: rotate(240deg) skewY(-30deg);
+            color: #333;
+        }
+
+        .section:nth-child(6) {
+            background: linear-gradient(45deg, #a8edea, #fed6e3);
+            transform: rotate(300deg) skewY(-30deg);
+            color: #333;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #ff4757;
+            z-index: 10;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .spin-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .spin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .spin-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .emoji {
+            font-size: 24px;
+            margin: 0 5px;
+        }
+
+        .spins-left {
+            font-size: 16px;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎡 Lucky Spin Wheel 🎡</h1>
+        <div class="spins-left">Spins remaining: <span id="spinsCount">2</span></div>
+        
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <div class="wheel" id="wheel">
+                <div class="section">
+                    <span>💰<br>$100</span>
+                </div>
+                <div class="section">
+                    <span>💵<br>$2000</span>
+                </div>
+                <div class="section">
+                    <span>🍦<br>IceCream</span>
+                </div>
+                <div class="section">
+                    <span>💋<br>Kiss Me</span>
+                </div>
+                <div class="section">
+                    <span><br>Iphone</span>
+                </div>
+                <div class="section">
+                    <span>🍭<br>Lollipop</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="spin-btn" id="spinBtn" onclick="spin()">
+            🎯 SPIN THE WHEEL 🎯
+        </button>
+
+        <div class="result" id="result" style="display: none;">
+            Ready to spin!
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        let currentSpin = 0;
+        let isSpinning = false;
+        const totalSpins = 2;
+        
+        // Predetermined results
+        const predeterminedResults = [
+            { section: 4, text: " 🍭You Got Lollipop", angle: 100 },
+            { section: 6, text: "💋You got the Chance To Kiss Me!", angle: 260}
+        ];
+
+        function spin() {
+            if (isSpinning || currentSpin >= totalSpins) return;
+            
+            isSpinning = true;
+            const wheel = document.getElementById('wheel');
+            const spinBtn = document.getElementById('spinBtn');
+            const result = document.getElementById('result');
+            const spinsCount = document.getElementById('spinsCount');
+            
+            spinBtn.disabled = true;
+            result.style.display = 'none';
+            
+            // Get predetermined result for current spin
+            const targetResult = predeterminedResults[currentSpin];
+            
+            // Calculate rotation to land on target section
+            // Add multiple full rotations for effect (720-1440 degrees)
+            const baseRotation = Math.floor(Math.random() * 3 + 2) * 360; // 2-4 full rotations
+            const targetRotation = baseRotation + targetResult.angle;
+            
+            wheel.style.transform = `rotate(${targetRotation}deg)`;
+            
+            // Show result after animation
+            setTimeout(() => {
+                result.textContent = targetResult.text;
+                result.style.display = 'block';
+                
+                // Celebration effect
+                createCelebration();
+                
+                currentSpin++;
+                spinsCount.textContent = totalSpins - currentSpin;
+                
+                if (currentSpin < totalSpins) {
+                    spinBtn.disabled = false;
+                    spinBtn.textContent = currentSpin === 1 ? '🎯 FINAL SPIN 🎯' : '🎯 SPIN THE WHEEL 🎯';
+                } else {
+                    spinBtn.textContent = '🎉 GAME COMPLETE 🎉';
+                    setTimeout(() => {
+                        alert('🎊 Congratulations! You\'ve completed both spins! 🎊');
+                    }, 1000);
+                }
+                
+                isSpinning = false;
+            }, 3000);
+        }
+
+        function createCelebration() {
+            const celebration = document.getElementById('celebration');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f093fb', '#fad0c4', '#a8edea'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                
+                celebration.appendChild(confetti);
+                
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 5000);
+            }
+        }
+
+        // Add CSS animation for falling confetti
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style)
+
+        // Initialize
+        document.getElementById('spinsCount').textContent = totalSpins;
+    </script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Vals Day From Osagyefo😘</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .hero-video{
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        z-index: 0;
+        opacity: 0.5;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0a0a0f;
+      --accent-blue: #2962ff;
+      --accent-purple: #7b61ff;
+      --accent-cyan: #00e5ff;
+      --accent-pink: #ff4081;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255,255,255,0.65);
+      --nav-height: 64px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      background: rgba(10,10,15,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      position: relative;
+      color: white;
+    }
+
+    .logo-mark svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-search {
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .nav-search:hover { opacity: 1; }
+
+    .btn-get-started {
+      background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      padding: 10px 22px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-get-started:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(41,98,255,0.45);
+    }
+
+    /* ─── HERO SECTION ─── */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .earth {
+      position: absolute;
+      bottom: -180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130vw;
+      max-width: 900px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 60% 40%,
+        #1a2a6c 0%,
+        #0d1b3e 35%,
+        #07111f 65%,
+        #030a11 100%
+      );
+      box-shadow:
+        0 0 120px 30px rgba(20,60,120,0.4),
+        inset 0 30px 80px rgba(80,180,255,0.08);
+      animation: earthPulse 8s ease-in-out infinite;
+    }
+    @keyframes earthPulse {
+      0%, 100% { box-shadow: 0 0 120px 30px rgba(20,60,120,0.4), inset 0 30px 80px rgba(80,180,255,0.08); }
+      50% { box-shadow: 0 0 160px 60px rgba(20,80,160,0.5), inset 0 30px 80px rgba(80,180,255,0.13); }
+    }
+
+    .city-lights {
+      position: absolute;
+      bottom: -130px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130vw;
+      max-width: 900px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+
+
+overflow: hidden;
+      pointer-events: none;
+    }
+
+    .city-lights::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(255,160,50,0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 60%, rgba(255,120,30,0.1) 0%, transparent 40%),
+                  radial-gradient(ellipse at 50% 80%, rgba(200,100,20,0.08) 0%, transparent 30%);
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--min-op, 0.2); transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .aurora {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .aurora-bar {
+      position: absolute;
+      top: 0;
+      width: 2px;
+      border-radius: 0 0 2px 2px;
+      animation: auroraFall var(--dur, 2s) ease-in-out infinite var(--delay, 0s);
+      opacity: 0;
+    }
+    @keyframes auroraFall {
+      0% { opacity: 0; height: 0; top: -20%; }
+      20% { opacity: 0.9; }
+      80% { opacity: 0.6; }
+      100% { opacity: 0; height: var(--h, 40%); top: 5%; }
+    }
+
+    .astronaut-wrap {
+      position: absolute;
+      bottom: 26%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 220px;
+      height: 220px;
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-12px); }
+    }
+
+    .pod {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 90px;
+      background: radial-gradient(ellipse at 50% 60%, #1a1a2e 0%, #0d0d1a 100%);
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+    .pod::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 20px; right: 20px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top: 2px solid rgba(179,100,255,0.7);
+      border-left: 2px solid rgba(41,98,255,0.5);
+      box-shadow: 0 0 20px rgba(120,80,255,0.4);
+    }
+    .pod::after {
+      content: '';
+      position: absolute;
+      top: 4px; left: 16px; right: 16px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,229,255,0.15);
+    }
+
+    .astro-body {
+      position: absolute;
+      bottom: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 100px;
+      background: linear-gradient(160deg, #2a2a3e 0%, #16162a 100%);
+      border-radius: 40px 40px 30px 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .astro-body::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: 41px 41px 31px 31px;
+      border: 1.5px solid rgba(179,100,255,0.3);
+    }
+
+    .astro-helmet {
+      position: absolute;
+      bottom: 128px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 72px;
+      height: 78px;
+      background: linear-gradient(160deg, #2e2e42 20%, #14141e 100%);
+      border-radius: 50%;
+      border: 2px solid rgba(120,80,255,0.25);
+      box-shadow: 0 0 20px rgba(120,80,255,0.2);
+    }
+    .astro-helmet::after {
+      content: '';
+      position: absolute;
+      top: 12px; left: 10px; right: 10px; bottom: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0,229,255,0.08) 0%, rgba(41,98,255,0.05) 100%);
+      border: 1px solid rgba(0,229,255,0.12);
+    }
+
+    .helmet-ring {
+      position: absolute;
+      bottom: 124px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 12px;
+
+
+border-radius: 50%;
+      background: transparent;
+      border: 2px solid rgba(179,100,255,0.6);
+      box-shadow: 0 0 12px rgba(179,100,255,0.5), inset 0 0 6px rgba(179,100,255,0.2);
+    }
+
+    .astro-arm-right {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      width: 26px;
+      height: 60px;
+      background: linear-gradient(160deg, #2a2a3e 0%, #16162a 100%);
+      border-radius: 12px;
+      transform: rotate(-25deg) translateX(30px);
+      border: 1.5px solid rgba(120,80,255,0.2);
+    }
+
+    /* ─── HERO TEXT ─── */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      margin-top: auto;
+      padding: 0 28px 40px;
+      text-align: center;
+    }
+
+    .hero-headline {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(44px, 12vw, 72px);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 16px;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.3s;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 32px;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: #fff;
+      color: #0a0a0f;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 16px 48px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: transform 0.18s, box-shadow 0.18s;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.7s;
+    }
+    .btn-cta:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(255,255,255,0.2);
+    }
+    .btn-cta:active {
+      transform: translateY(0) scale(0.99);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+
+    .login-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 999;
+}
+
+.login-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.login-modal {
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 30px;
+  width: 320px;
+  color: white;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  transform: translateY(40px);
+  transition: 0.3s ease;
+}
+
+.login-overlay.active .login-modal {
+  transform: translateY(0);
+}
+
+.login-modal input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 22px;
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <div class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <a href="pictures.html" class="logo">
+        <div class="logo-mark"><h3 >view me</h6> 
+          
+        </div>
+      </a>
+    </div>
+
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="stars" id="stars"></div>
+      <div class="aurora" id="aurora"></div>
+      <div class="earth"></div>
+      <div class="city-lights"></div>
+    </div>
+
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="video/video_2026-02-14_01-26-49.mp4">
+    </video>
+
+    <div class="astronaut-wrap">
+      <div class="astro-helmet"></div>
+      <div class="helmet-ring"></div>
+      <div class="astro-body"></div>
+      <div class="astro-arm-right"></div>
+      <div class="pod"></div>
+    </div>
+
+    <div class="hero-content">
+      <h2 class="hero-headline">Happy Vals Day 🎉<br>From Osagyefo😘.</h2>
+      <p class="hero-sub">HAPPY TO HAVE YOU IN MY LIFE 🫂,<br>MUCH LOVE💕.</p>
+
+   <h1>Nana Ama Ghana❤️</h1>    
+<button class="btn-cta">Win Your Gift 🎁 </button>
+    </div>
+  </section>
+
+
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-modal">
+    <span class="close-btn" id="closeLogin">&times;</span>
+
+    <h2>Login</h2>
+    <input type="text" placeholder="What's my name 😁?" />
+    <input class="num" type="number" placeholder="Enter my favorite number" />
+    <button class="login-btn">Log In</button>
+   
+  </div>
+</div>
+ 
+
+<script>
+
+  const btn = document.querySelector('.btn-cta');
+  const btnH = document.querySelector('.hamburger');
+  const overlay = document.getElementById('loginOverlay');
+  const closeBtn = document.getElementById('closeLogin');
+  const loginBtn = document.querySelector('.login-btn');
+  const numberInput = document.querySelector('.num');
+
+  let attempts = 0;
+  const maxAttempts = 3;
+  const correctNumber = 12;
+
+  function openOverlay() {
+    overlay.classList.add('active');
+  }
+
+  btn.addEventListener('click', openOverlay);
+  if (btnH) btnH.addEventListener('click', openOverlay);
+
+  closeBtn.addEventListener('click', () => {
+    overlay.classList.remove('active');
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('active');
+    }
+  });
+
+  loginBtn.addEventListener('click', () => {
+    const userNumber = parseInt(numberInput.value);
+
+    if (attempts >= maxAttempts) {
+      alert("You have used all 3 attempts!");
+      loginBtn.disabled = true;
+      return;
+    }
+
+    if (userNumber === correctNumber) {
+      window.location.href = "spin.html";
+    } else {
+      attempts++;
+      if (attempts < maxAttempts) {
+        alert("Wrong number! Try again. Attempts left: " + (maxAttempts - attempts));
+        numberInput.value = "";
+      } else {
+        alert("You have used all 3 attempts!");
+        loginBtn.disabled = true;
+      }
+    }
+  });
+
+</script>
+
+</html>
